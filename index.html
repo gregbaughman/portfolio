@@ -8,6 +8,8 @@
         body {
             background-color: rgb(0, 0, 0);
             color: white;
+            justify-content: center;
+            align-items: center;
         }
         .icons {
             display: flex;
@@ -40,6 +42,23 @@
             max-width: 150px;
             height: auto;
         }
+
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            margin: 0 auto;
+        }
+
         @media only screen and (min-device-width: 320px) and (max-device-width : 480px){
             body{
                 background: #000;
@@ -75,9 +94,11 @@
   
  In my free time, I find great joy in building and flying radio-controlled FPV systems. I am driven by my passion for systems engineering, and as I approach the end of my academic career, I am excited to embark on a professional journey in Guidance, Navigation, and Controls, where I hope to contribute to advancements in this field and explore new opportunities in aerospace engineering.
 </p>
-    <h1 style="font-family: 'Georgia'; width: 55%; margin-left: auto; margin-right: auto; margin-top: 75px; text-align: center;"><b>Projects</b></h1>
-    <h4 Style="font-family: 'Georgia'; width: 55%; margin-left: auto; margin-right: auto; text-align:left;">FPV Apex Quadcopter</h4>
-    <iframe src="https://www.youtube.com/watch?v=iZZb4yshE80" 
-        width="560" height="315" frameborder="0" allow="autoplay; loop; encrypted-media" allowfullscreen>
-</iframe>
+    <h1 style="font-family: 'Courier New'; width: 55%; margin-left: auto; margin-right: auto; margin-top: 75px; text-align: center;"><b>Projects</b></h1>
+    <h2 Style="font-family: 'Georgia'; width: 55%; margin-left: auto; margin-right: auto; text-align:left;">FPV Apex Quadcopter</h2>
+    <center>
+        <iframe src="https://www.youtube.com/embed/iZZb4yshE80?autoplay=1&loop=1&playlist=iZZb4yshE80&controls=0&mute=1&modestbranding=1&showinfo=0&rel=0"
+            width="400" height="225" frameborder="0" allow="autoplay; loop; encrypted-media" allowfullscreen>
+        </iframe>
+    </center>
 </html>
