@@ -58,11 +58,56 @@
             border: none;
             margin: 0 auto;
         }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .button {
+            padding: 15px 30px;
+            color: white;
+            background-color: aliceblue;
+            background-size: cover;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .FPV {
+            background-image: url('images/FPV_cover.png');
+        }
+
+        .PLANK {
+            background-image: url('images/FINAL_ASSM_TOP.png');
+        }
+
+        .STOL {
+            background-image: url('images/STOLcover.png');
+        }
+
+
 
         @media only screen and (min-device-width: 320px) and (max-device-width : 480px){
             body{
                 background: #000;
                 width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .button {
+                width: 75%;
             }
         }
     </style>
@@ -95,28 +140,11 @@
  In my free time, I find great joy in building and flying radio-controlled FPV systems. I am driven by my passion for systems engineering, and as I approach the end of my academic career, I am excited to embark on a professional journey in Guidance, Navigation, and Controls, where I hope to contribute to advancements in this field and explore new opportunities in aerospace engineering.
 </p>
     <h1 style="font-family: 'Courier New'; width: 55%; margin-left: auto; margin-right: auto; margin-top: 75px; text-align: center;"><b>Projects</b></h1>
-    <h2 Style="font-family: 'Georgia'; width: 55%; margin-left: auto; margin-right: auto; text-align:left;">First Person View Quadcopter</h2>
-    <center>
-        <iframe src="https://www.youtube.com/embed/iZZb4yshE80?autoplay=1&loop=1&playlist=iZZb4yshE80&controls=0&mute=1&modestbranding=1&showinfo=0&rel=0"
-            width="400" height="225" frameborder="0" allow="autoplay; loop; encrypted-media" allowfullscreen>
-        </iframe>
-    </center>
-    <p style="font-size: 18px; margin-left: auto; margin-right: auto;text-align: left; font-family: 'Lato'; width: 65%">
-        As a kid, I was fascinated by remote control planes. I spent a lot of time flying small models at the park and occasionally visiting the RC airfield with my neighbor, an Air Force veteran. My curiosity deepened when I came across videos of pilots flying radio-controlled quadcopters through first-person view (FPV) goggles. The idea of experiencing flight from the perspective of the aircraft captivated me. This project is the culmination of that dream by combining my love for aviation, engineering, and the desire to push the boundaries of what I could create.
-        <br><br>
-        I started this build by reaserching the many different components a quadcopter uses and their functions. I also read up on the different systems that run on a quadcopter and their harmonic integration. I gathered all the required parts I needed and got to soldering.
-        <br>
-        <img src="images/motors_overhead.jpg" alt="overhead view of motors installed on fpv quadcopter frame" style="display: block; margin: 0 auto; width: 75%">
-        <br>
-        I started by making a diagram detailing where each component would go inside the quadcopter and where all wires were to be ran. Beginning with the motors, followed shortly by the electronic speed controller(ESC) and flight controller, I wired each component together. I finished the build by wiring the control link system as well as the video transmitter and camera.
-        <br>
-        <img src="images/final_wiring.png" alt="Final wiring of quadcopter components" style="display: block; margin: 0 auto; width: 75%">
-        <br>
-        Once everything was correctly wired together, I plugged the quadcopter into my computer and began to install the correct sofware onto the KISS flight controller and begin tuning the PID's. 
-        <br>
-        <img src="images/kiss_gui.jpg" alt="View of Kiss flight control software" style="display: block; margin: 0 auto; width: 75%">
-        <br>
-        After many hours of tuning the flight controller, I tested the video system as well as the control link and when everything was in working order I headed out to the field for a test flight. After testing (and crashing) I went back and continued to tune the PID control values until the system was comfortable for me to control. I also had to address certain problems that arose after flying such as airflow to the video transmitter as well as the strength of some of the 3D printed parts.
-    </p>
+
+    <div class="button-container">
+        <a href="FPV_QUAD.html" class="button FPV">First Person View Quadcopter</a>
+        <a href="PLANK.html" class="button PLANK">Eliptical Plank UAV</a>
+        <a href="STOL.html" class="button STOL">Foamboard STOL Plane</a>
+    </div>
 
 </html>
