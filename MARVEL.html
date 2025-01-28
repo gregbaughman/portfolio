@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M.A.R.V.E.L. Attitude Control System Simulation</title>
+    <style>
+        body {
+            background-color: rgb(0, 0, 0);
+            color: white;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }  
+
+        h1 {
+            font-family: 'Georgia';
+            width: 55%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        iframe {
+            width: 400px;
+            height: 225px;
+            border: none;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 0 auto;
+            text-align: left;
+            font-family: 'Times New Roman', Times, serif;
+            width: 65%;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 75%;
+            height: auto;
+        }
+
+        
+        @media (max-width: 768px) {
+            h1 {
+                width: 90%;
+            }
+
+            p {
+                width: 90%;
+            }
+
+            iframe {
+                width: 100%;
+                height: auto;
+            }
+            img {
+                width: 133%;
+                height: auto;
+            }
+            pre {
+            background: rgb(0, 0, 0);
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            text-align: left;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Courier New', monospace;
+            text-align:left;
+            display:block;
+        }
+        }
+    </style>
+</head>
+    <body>
+        <h1>MARVEL Attitude Determination and Control System</h1>
+    
+        <p>
+            To ensure MARVEL meets its mission requirements, the satellite must utilize a robust attitude determination and control system to collect accurate data and establish a proper transmission link. MARVEL will make use of two star trackers and three sun sensors to properly determine its orientation when it inserts into orbit around Mars. The satellite will also utilize an internal inertial measurement unit (IMU) containing three Micro-Electro-Mechanical Systems (MEMS) gyros, three accelerometers, and three inclinometers to measure the satellite's angular rates, acceleration, and tilt relative to its calibrated axis. To control orientation on the three rotational axes, MARVEL will feature three reaction wheels placed along the inertial axes. The exact specifications of these sensors and reaction wheels can be seen in the control appendix.
+        </p>
+    
+        <h2>Operational Modes</h2>
+    
+        <p>
+            MARVEL will make use of three different operational modes while in orbit around Mars: 
+        </p>
+        <ol>
+            <li><strong>Deployment and Initialization</strong>: Upon deployment, the control system will initialize and bring all angular rates to zero to correct any micro-rotations induced by separation from Starship out of the P-Pod.</li>
+            <li><strong>Sun Pointing</strong>: After calibration and initialization, the system will orient itself towards the sun and prepare for its period of data collection.</li>
+            <li><strong>Transmission Link Orientation</strong>: After data collection, the system will orient itself towards the Perseverance rover to prepare for data transfer. Once the data transfer window closes, the satellite will return to the sun-pointing mode.</li>
+        </ol>
+    
+        <figure>
+            <img src="Figures/Block Diagram.png" alt="Feedback Control System Block Diagram">
+            <figcaption>Figure 1: Image of the feedback control system block diagram</figcaption>
+        </figure>
+    
+        <h2>Control System Impulse Response</h2>
+    
+        <p>
+            The control system takes angular rates (&#969;) from the IMU as well as quaternions from the star trackers to determine the current orientation in space. The attitude-pointing block outputs data from the sun sensors modeled in a simplified manner. The model uses PID feedback with gains <em>K<sub>P</sub></em>, <em>K<sub>I</sub></em>, and <em>K<sub>D</sub></em> set to 0.09, 0, and 0.012, respectively.
+        </p>
+    
+        <figure>
+            <img src="Figures/Impulse_w.png" alt="Control System Impulse Response Angular Velocities">
+            <figcaption>Figure 2: Control System Impulse Response Angular Velocities</figcaption>
+        </figure>
+    
+        <figure>
+            <img src="Figures/Impulse_q.png" alt="Control System Impulse Response Quaternions">
+            <figcaption>Figure 3: Control System Impulse Response Quaternions</figcaption>
+        </figure>
+    
+        <figure>
+            <img src="Figures/Impulse_T.png" alt="Control System Impulse Response Reaction Wheel Applied Torques">
+            <figcaption>Figure 4: Control System Impulse Response Reaction Wheel Applied Torques</figcaption>
+        </figure>
+    
+        <p>
+            In space, satellites are susceptible to micrometeorite strikes, which can disrupt orientation and rotation. MARVEL's control system model takes around 35 seconds to respond to a micrometeorite strike, modeled as a discrete impulse. Below is the response to a 0.01 mNm step.
+        </p>
+    
+        <figure>
+            <img src="Figures/step_w.png" alt="Control System Step Response Angular Velocities">
+            <figcaption>Figure 5: Control System Step Response Angular Velocities</figcaption>
+        </figure>
+    
+        <figure>
+            <img src="Figures/step_q.png" alt="Control System Step Response Quaternions">
+            <figcaption>Figure 6: Control System Step Response Quaternions</figcaption>
+        </figure>
+    
+        <figure>
+            <img src="Figures/step_t.png" alt="Control System Step Response Reaction Wheel Applied Torques">
+            <figcaption>Figure 7: Control System Step Response Reaction Wheel Applied Torques</figcaption>
+        </figure>
+    
+        <h2>Deployment and Initialization Sequence</h2>
+    
+        <p>
+            The deployment and initialization sequence was modeled by simulating micro-rotations upon release from the P-Pod. The system drives angular rates to zero while the quaternion settles at a sun-facing orientation. This orientation was calculated using MATLAB's Aerospace Blockset. Below are the response plots to an initial angular velocity of <em>&#969;<sub>0</sub></em> = [-0.457 -0.2499 -0.4675] rad/s.
+        </p>
+    
+        <figure>
+            <img src="Figures/deploy_w.png" alt="Control System Micro Rotations Response Angular Velocities">
+            <figcaption>Figure 8: Control System Micro Rotations Response Angular Velocities</figcaption>
+        </figure>
+    
+        <figure>
+            <img src="Figures/deploy_q.png" alt="Control System Micro Rotations Response Quaternions">
+            <figcaption>Figure 9: Control System Micro Rotations Response Quaternions</figcaption>
+        </figure>
+    
+        <figure>
+            <img src="Figures/deploy_T.png" alt="Control System Micro Rotations Response Reaction Wheel Applied Torques">
+            <figcaption>Figure 10: Control System Micro Rotations Response Reaction Wheel Applied Torques</figcaption>
+        </figure>
+    
+        <p>
+            Using RW-04 reaction wheels along with the selected sun sensors, star trackers, and IMU, MARVEL can successfully correct small rotations upon deployment within approximately 20 to 80 seconds, depending on the magnitude of the rotation. Further research will be required to assess the performance of the reaction wheels and ensure the torque they provide is sufficient for the mission.
+        </p>
+        <h2>A.2</h2>
+
+<table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+    <thead>
+        <tr>
+            <th>Sensor Type</th>
+            <th>Sensor Name</th>
+            <th>Slew Rate (°/s)</th>
+            <th>Diagonal Field of View (°)</th>
+            <th>Accuracy (°)</th>
+            <th>Update Rate (Hz)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Sun Sensor</td>
+            <td>CubeSense Sun</td>
+            <td>70</td>
+            <td>176</td>
+            <td>0.2 (2-sigma)</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Star Tracker</td>
+            <td>CubeSense Earth</td>
+            <td>14</td>
+            <td>90</td>
+            <td>1 (3-sigma)</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>Star Tracker</td>
+            <td>CubeStar</td>
+            <td>0.3</td>
+            <td>59.4</td>
+            <td>0.02 (cross-axis), 0.06 (roll), 3-sigma</td>
+            <td>1</td>
+        </tr>
+    </tbody>
+</table>
+
+<table border="1" style="width: 100%; border-collapse: collapse; text-align: left; margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>STIM377H IMU Component</th>
+            <th>Input Range</th>
+            <th>Resolution</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Gyro</td>
+            <td>± 400 (°/s)</td>
+            <td>0.22 (°/h)</td>
+        </tr>
+        <tr>
+            <td>Accelerometer</td>
+            <td>± 10 (g)</td>
+            <td>1.9 (µg)</td>
+        </tr>
+        <tr>
+            <td>Inclinometer</td>
+            <td>± 10 (g)</td>
+            <td>0.2 (µg)</td>
+        </tr>
+    </tbody>
+</table>
+
+<table border="1" style="width: 100%; border-collapse: collapse; text-align: left; margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>Component</th>
+            <th>Momentum</th>
+            <th>Torque</th>
+            <th>Dimensions</th>
+            <th>Mass</th>
+            <th>Average Imbalance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Reaction Wheel (RW-0.4)</td>
+            <td>± 0.4 Nms</td>
+            <td>± 0.1 Nm</td>
+            <td>105 mm x 103 mm x 46 mm</td>
+            <td>0.75 kg</td>
+            <td>Static: 2 g·mm, Dynamic: 30 g·mm²</td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+<h2>Simulink Functions</h2>
+<pre>
+    <code>
+    % MARVEL Moments of Inertia Calculator
+    clear,clc,close all
+    % For this calculation, MARVEL is modeled as a rectangular prism 
+    % with constant density based on the chassis size and mass of the satellite. 
+    % The solar panels and the helical antenna are both modeled as point masses for simplicity.
+    
+    m = 13.1413628 - 0.5;
+    a = 0.2;
+    b = 0.2;
+    c = 0.4;
+    
+    % Body moments of inertia
+    Ix_prism = 1/12 * m * (b^2 + c^2);
+    Iy_prism = 1/12 * m * (a^2 + c^2);
+    Iz_prism = 1/12 * m * (b^2 + a^2);
+    
+    % Solar panels moments of inertia
+    dx1 = 0.45;
+    dy1 = 0.2;
+    dz1 = 0;
+    Ix_panel = 2 * (dy1^2 + dz1^2);
+    Iy_panel = 2 * (dx1^2 + dz1^2);
+    Iz_panel = 2 * (dy1^2 + dx1^2);
+    
+    % Helical antenna moments of inertia
+    dx2 = 0;
+    dy2 = 0.5;
+    dz2 = 0.2;
+    Ix_ant = 0.5 * (dy2^2 + dz2^2);
+    Iy_ant = 0.5 * (dx2^2 + dz2^2);
+    Iz_ant = 0.5 * (dy2^2 + dx2^2);
+    
+    % Total moments of inertia
+    Ix = Ix_ant + Ix_panel + Ix_prism;
+    Iy = Iy_ant + Iy_panel + Iy_prism;
+    Iz = Iz_ant + Iz_panel + Iz_prism;
+    
+    J = diag([Ix, Iy, Iz]);
+    torque = zeros(3, 1);
+    q0 = [cos(pi/4); sin(pi/4) * [1; -1; 1]];
+    
+    mu = 0;
+    sigma = 0.4;
+    dist = makedist('Normal', 'mu', mu, 'sigma', sigma);
+    w0 = [random(dist); random(dist); random(dist)];
+    
+    % Mars orbital parameters
+    RMars = 3396000;
+    altitude = 400000;
+    r = RMars + altitude;
+    i = 90;
+    G = 6.674 * 10^-11;
+    MMars = 6.4171 * 10^23; 
+    v_orbit = sqrt(G * MMars / r);
+    omega_orbit = v_orbit / r;
+    T = 2 * pi / omega_orbit;
+    
+    t = 0;
+    theta = omega_orbit * t;
+    
+    x_orbit_pos = r * cos(theta);
+    y_orbit_pos = r * sin(theta);
+    z_orbit_pos = 0;
+    
+    date = juliandate(datetime('now'));
+    [mars_pos, ~] = planetEphemeris(date, 'Sun', 'Mars', '432');
+    X_icrf_initial = mars_pos + [x_orbit_pos, y_orbit_pos, z_orbit_pos];
+    X_icrf = X_icrf_initial;
+    t_utc = date;
+    
+    % Gravity Gradient (Tg)
+    mu_mars = 4.282837 * 10^13;
+    Tg = 3 * mu_mars / 2 / (RMars^3) * abs(Iz - Iy) * 0.5;
+    tg_vec = [Tg; 0; 0]; % Non-rotating satellite
+    
+    % Solar Radiation Pressure (Tsp)
+    Asolar = 0.142848;
+    Abody = 0.2 * 0.4;
+    As = Asolar + Abody;
+    q = 0.6; % Reflectance factor
+    i = 0; % Sun-facing orbit
+    F = (200 / 0.142848) / (3 * 10^8) * (As) * (1 + q) * cos(i);
+    c_ps = [0; 0.2; 0];
+    cg = [0; 0.048; 0];
+    Tsp = F * (c_ps - cg);
+    
+    % Aerodynamic Torque (Ta)
+    c_pa = [0; 0; 0];
+    F = 0.5 * (10 * 10^-24.5 * 2 * As * v_orbit^2);
+    Ta = F * (c_pa - cg);
+        </code>
+    </pre>
+</body>
+</html>
