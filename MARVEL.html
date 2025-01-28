@@ -358,6 +358,122 @@
     c_pa = [0; 0; 0];
     F = 0.5 * (10 * 10^-24.5 * 2 * As * v_orbit^2);
     Ta = F * (c_pa - cg);
+
+    timestep = out.timeout;
+theta = omega_orbit * timestep;
+x_orbit_pos = r * cos(theta);
+y_orbit_pos = r * sin(theta);
+z_orbit_pos = 0;
+date = juliandate(datetime('now'));
+[mars_pos, ~] = planetEphemeris(date, 'Sun', 'Mars', '432');
+X_icrf = mars_pos + [x_orbit_pos, y_orbit_pos, z_orbit_pos];
+t_utc = date + (timestep / 86400);
+
+    %ANIMATE ROTATION
+close all;clc;
+set(groot, 'DefaultTextInterpreter', 'latex');
+set(groot, 'DefaultAxesTickLabelInterpreter', 'latex');
+set(groot, 'DefaultLegendInterpreter', 'latex');
+
+omega0 = w0;
+orientation = X_icrf_initial;
+data = out.ang_vel;
+time = data.Time;
+dt = mean(diff(time));
+dataT = out.torqueout.data;
+angular_velocities = data.Data;
+dataQ = out.quatout;
+q = dataQ.Data(1,:)';
+Fs = 1000;
+Fc = 1;
+[b,a] = butter(4,Fc/(Fs/2),"low");
+smooth_T = filter(b,a,dataT);
+
+figure(10)
+plot(data.Time,data.Data,'LineWidth', 1.7)
+xlabel("Time (s)")
+ylabel("Angular Velocities (rad/s)")
+title("Angular Velocities System Sun-Tracking Orientation")
+legend('w1', 'w2', 'w3')
+grid
+
+figure(20)
+plot(data.Time,dataQ.Data,'LineWidth', 1.7)
+xlabel("Time (s)")
+ylabel("Quaternions (normalized)")
+title("Quaternion System Sun-Tracking Orientation")
+legend('q1', 'q2', 'q3', 'q4')
+grid
+
+figure(30)
+plot(data.Time,smooth_T,'LineWidth', 1.7)
+xlabel("Time (s)")
+ylabel("Reaction Wheels Applied System Torques (Nm)")
+title("Reaction Wheel Torques System Sun-Tracking Orientation")
+legend('T1', 'T2', 'T3')
+grid
+
+if exist('rotations.mp4', 'file') == 2
+    delete('rotations.mp4');
+end
+video = VideoWriter('rotations.mp4', 'MPEG-4');
+open(video);
+
+rectangle_vertices = [
+    4  2  1;  -4  2  1; -4  -2  1;  4  -2  1;
+    4  2  -1; -4  2  -1; -4  -2  -1;  4  -2  -1;
+    2  2  0; -2  2  0; 2  -8  0; -2 -8  0;
+    2  -2  0; -2  -2  0; 2  8  0; -2  8  0;
+];
+faces = [
+    1 2 3 4;   % top
+    5 6 7 8;   % bottom
+    1 2 6 5;   % front
+    2 3 7 6;   % right
+    3 4 8 7;   % back
+    4 1 5 8;   % left
+    9 10 12 11;
+    13 14 16 15;
+];
+
+SideColors = [
+    0 1 0;
+    0 1 0;
+    0 1 1;
+    1 0.647 0;
+    0 1 1;
+    1 0.647 0;
+    0.2 0 0.5;
+    0.2 0 0.5;
+];
+
+Rotated_Sat = zeros(size(rectangle_vertices,1),...
+size(rectangle_vertices,2), length(time));
+figure('units','normalized','outerposition',[0 0 1 1])
+title("MARVEL Deployment System Orientation (Sun Pointing)")
+hold on;
+axis equal;
+grid on;
+set(gca, 'GridColor', 'w');
+view(3);
+xlabel('X');
+ylabel('Y');
+zlabel('Z');
+xlim([-8.5, 8.5]);
+ylim([-8.5, 8.5]);
+zlim([-8.5, 8.5]);
+set(gca, 'Color', 'k');
+
+H = patch('Vertices',rectangle_vertices,...
+'Faces',faces,'FaceVertexCData',SideColors,...
+'FaceColor','flat', 'FaceAlpha', 0.7);
+timedisplay = text(0,0,10, '',...
+'FontSize',12, 'Color', 'red',...
+'FontWeight', 'bold');
+
+for k = 1:length(time)/4
+    omega = angular_velocities(k, :)';
+    omega_quaternion = [0; omega];
         </code>
     </pre>
 </section>
