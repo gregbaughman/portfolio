@@ -41,6 +41,12 @@
             max-width: 75%;
             height: auto;
         }
+        .figure-image 
+        {
+        width: 75%; 
+        max-width: 700px;
+        height: auto;
+        }
 
         
         @media (max-width: 768px) {
@@ -98,7 +104,7 @@
         and back down towards the rover through data collection and transmission phases.
     
         <figure>
-            <img src="images/Block Diagram.png" alt="Feedback Control System Block Diagram">
+            <img src="images/Block Diagram.png" alt="Feedback Control System Block Diagram" class="figure-image">
             <figcaption>Figure 1: Image of the feedback control system block diagram</figcaption>
         </figure>
         <br>
@@ -109,17 +115,17 @@
         </p>
     
         <figure>
-            <img src="images/Impulse_w.png" alt="Control System Impulse Response Angular Velocities">
+            <img src="images/Impulse_w.png" alt="Control System Impulse Response Angular Velocities" class="figure-image">
             <figcaption>Figure 2: Control System Impulse Response Angular Velocities</figcaption>
         </figure>
     
         <figure>
-            <img src="images/Impulse_q.png" alt="Control System Impulse Response Quaternions">
+            <img src="images/Impulse_q.png" alt="Control System Impulse Response Quaternions" class="figure-image">
             <figcaption>Figure 3: Control System Impulse Response Quaternions</figcaption>
         </figure>
     
         <figure>
-            <img src="images/Impulse_T.png" alt="Control System Impulse Response Reaction Wheel Applied Torques">
+            <img src="images/Impulse_T.png" alt="Control System Impulse Response Reaction Wheel Applied Torques" class="figure-image">
             <figcaption>Figure 4: Control System Impulse Response Reaction Wheel Applied Torques</figcaption>
         </figure>
     
@@ -128,17 +134,17 @@
         </p>
     
         <figure>
-            <img src="images/step_w.png" alt="Control System Step Response Angular Velocities">
+            <img src="images/step_w.png" alt="Control System Step Response Angular Velocities" class="figure-image">
             <figcaption>Figure 5: Control System Step Response Angular Velocities</figcaption>
         </figure>
     
         <figure>
-            <img src="images/step_q.png" alt="Control System Step Response Quaternions">
+            <img src="images/step_q.png" alt="Control System Step Response Quaternions" class="figure-image">
             <figcaption>Figure 6: Control System Step Response Quaternions</figcaption>
         </figure>
     
         <figure>
-            <img src="images/step_t.png" alt="Control System Step Response Reaction Wheel Applied Torques">
+            <img src="images/step_t.png" alt="Control System Step Response Reaction Wheel Applied Torques" class="figure-image">
             <figcaption>Figure 7: Control System Step Response Reaction Wheel Applied Torques</figcaption>
         </figure>
         <br>
@@ -149,17 +155,17 @@
         </p>
     
         <figure>
-            <img src="images/deploy_w.png" alt="Control System Micro Rotations Response Angular Velocities">
+            <img src="images/deploy_w.png" alt="Control System Micro Rotations Response Angular Velocities" class="figure-image">
             <figcaption>Figure 8: Control System Micro Rotations Response Angular Velocities</figcaption>
         </figure>
     
         <figure>
-            <img src="images/deploy_q.png" alt="Control System Micro Rotations Response Quaternions">
+            <img src="images/deploy_q.png" alt="Control System Micro Rotations Response Quaternions" class="figure-image">
             <figcaption>Figure 9: Control System Micro Rotations Response Quaternions</figcaption>
         </figure>
     
         <figure>
-            <img src="images/deploy_T.png" alt="Control System Micro Rotations Response Reaction Wheel Applied Torques">
+            <img src="images/deploy_T.png" alt="Control System Micro Rotations Response Reaction Wheel Applied Torques" class="figure-image">
             <figcaption>Figure 10: Control System Micro Rotations Response Reaction Wheel Applied Torques</figcaption>
         </figure>
     
@@ -168,7 +174,7 @@
         </p>
         <h2>A.2</h2>
 
-<table border="1" style="width: 75%; border-collapse: collapse; text-align: left;">
+<table border="1" style="width: 75%; border-collapse: collapse; text-align: left; margin: 0 auto;">
     <thead>
         <tr>
             <th>Sensor Type</th>
@@ -207,7 +213,7 @@
     </tbody>
 </table>
 
-<table border="1" style="width: 75%; border-collapse: collapse; text-align: left; margin-top: 20px;">
+<table border="1" style="width:75%; border-collapse: collapse; text-align: left; margin-top: 20px; margin: 0 auto;">
     <thead>
         <tr>
             <th>STIM377H IMU Component</th>
@@ -234,7 +240,7 @@
     </tbody>
 </table>
 
-<table border="1" style="width: 75%; border-collapse: collapse; text-align: left; margin-top: 20px;">
+<table border="1" style="width: 75%; border-collapse: collapse; text-align: left; margin-top: 20px; margin: 0 auto;">
     <thead>
         <tr>
             <th>Component</th>
@@ -258,6 +264,7 @@
 </table>
 
 <br>
+<section style="text-align: left;">
 <h2>Simulink Functions</h2>
 <pre>
     <code>
@@ -353,5 +360,6 @@
     Ta = F * (c_pa - cg);
         </code>
     </pre>
+</section>
 </body>
 </html>
