@@ -80,22 +80,25 @@
         <h1>MARVEL Attitude Determination and Control System</h1>
     
         <p>
-            To ensure MARVEL meets its mission requirements, the satellite must utilize a robust attitude determination and control system to collect accurate data and establish a proper transmission link. MARVEL will make use of two star trackers and three sun sensors to properly determine its orientation when it inserts into orbit around Mars. The satellite will also utilize an internal inertial measurement unit (IMU) containing three Micro-Electro-Mechanical Systems (MEMS) gyros, three accelerometers, and three inclinometers to measure the satellite's angular rates, acceleration, and tilt relative to its calibrated axis. To control orientation on the three rotational axes, MARVEL will feature three reaction wheels placed along the inertial axes. The exact specifications of these sensors and reaction wheels can be seen in the control appendix.
+        &nbsp;&nbsp;&nbsp;&nbsp;To ensure MARVEL meets its mission requirements, the satellite must utilize a robust attitude determination and control system to collect accurate data and establish a proper transmission link. MARVEL will make use of two star trackers and three sun sensors to properly determine its orientation when it inserts into orbit around Mars. The satellite will also utilize an internal inertial measurement unit (IMU) containing three Micro-Electro-Mechanical Systems (MEMS) gyros, three accelerometers, and three inclinometers to measure the satellite's angular rates, acceleration, and tilt relative to its calibrated axis. To control orientation on the three rotational axes, MARVEL will feature three reaction wheels placed along the inertial axes. The exact specifications of these sensors and reaction wheels can be seen in the control appendix.
         </p>
     
         <h2>Operational Modes</h2>
     
         <p>
-            MARVEL will make use of three different operational modes while in orbit around Mars: 
-        </p>
-        <ol>
-            <li><strong>Deployment and Initialization</strong>: Upon deployment, the control system will initialize and bring all angular rates to zero to correct any micro-rotations induced by separation from Starship out of the P-Pod.</li>
-            <li><strong>Sun Pointing</strong>: After calibration and initialization, the system will orient itself towards the sun and prepare for its period of data collection.</li>
-            <li><strong>Transmission Link Orientation</strong>: After data collection, the system will orient itself towards the Perseverance rover to prepare for data transfer. Once the data transfer window closes, the satellite will return to the sun-pointing mode.</li>
-        </ol>
+        &nbsp;&nbsp;&nbsp;&nbsp;MARVEL will make use of 3 different operational modes while in orbit around Mars:
+        (1) deployment and initialization, (2) sun pointing, and (3) transmission link orientation.
+        Upon deployment, the control system will initialize and, in mode 1, will bring all angular
+        rates to zero to correct any micro rotations induced by separation from Starship out of
+        the P-Pod. After calibration and initialization, in mode 2, the system will orient itself
+        properly towards the sun and prepare for its period of data collection. when the data
+        collection period ends, the system will move into mode 3 and properly orient itself
+        towards the Perseverance rover to prepare for data transfer. Once the data transfer
+        window closes, the satellite will return to mode 2, orienting its sensors toward the sun
+        and back down towards the rover through data collection and transmission phases.
     
         <figure>
-            <img src="Figures/Block Diagram.png" alt="Feedback Control System Block Diagram">
+            <img src="images/Block Diagram.png" alt="Feedback Control System Block Diagram">
             <figcaption>Figure 1: Image of the feedback control system block diagram</figcaption>
         </figure>
     
@@ -106,17 +109,17 @@
         </p>
     
         <figure>
-            <img src="Figures/Impulse_w.png" alt="Control System Impulse Response Angular Velocities">
+            <img src="images/Impulse_w.png" alt="Control System Impulse Response Angular Velocities">
             <figcaption>Figure 2: Control System Impulse Response Angular Velocities</figcaption>
         </figure>
     
         <figure>
-            <img src="Figures/Impulse_q.png" alt="Control System Impulse Response Quaternions">
+            <img src="images/Impulse_q.png" alt="Control System Impulse Response Quaternions">
             <figcaption>Figure 3: Control System Impulse Response Quaternions</figcaption>
         </figure>
     
         <figure>
-            <img src="Figures/Impulse_T.png" alt="Control System Impulse Response Reaction Wheel Applied Torques">
+            <img src="images/Impulse_T.png" alt="Control System Impulse Response Reaction Wheel Applied Torques">
             <figcaption>Figure 4: Control System Impulse Response Reaction Wheel Applied Torques</figcaption>
         </figure>
     
@@ -125,17 +128,17 @@
         </p>
     
         <figure>
-            <img src="Figures/step_w.png" alt="Control System Step Response Angular Velocities">
+            <img src="images/step_w.png" alt="Control System Step Response Angular Velocities">
             <figcaption>Figure 5: Control System Step Response Angular Velocities</figcaption>
         </figure>
     
         <figure>
-            <img src="Figures/step_q.png" alt="Control System Step Response Quaternions">
+            <img src="images/step_q.png" alt="Control System Step Response Quaternions">
             <figcaption>Figure 6: Control System Step Response Quaternions</figcaption>
         </figure>
     
         <figure>
-            <img src="Figures/step_t.png" alt="Control System Step Response Reaction Wheel Applied Torques">
+            <img src="images/step_t.png" alt="Control System Step Response Reaction Wheel Applied Torques">
             <figcaption>Figure 7: Control System Step Response Reaction Wheel Applied Torques</figcaption>
         </figure>
     
@@ -146,17 +149,17 @@
         </p>
     
         <figure>
-            <img src="Figures/deploy_w.png" alt="Control System Micro Rotations Response Angular Velocities">
+            <img src="images/deploy_w.png" alt="Control System Micro Rotations Response Angular Velocities">
             <figcaption>Figure 8: Control System Micro Rotations Response Angular Velocities</figcaption>
         </figure>
     
         <figure>
-            <img src="Figures/deploy_q.png" alt="Control System Micro Rotations Response Quaternions">
+            <img src="images/deploy_q.png" alt="Control System Micro Rotations Response Quaternions">
             <figcaption>Figure 9: Control System Micro Rotations Response Quaternions</figcaption>
         </figure>
     
         <figure>
-            <img src="Figures/deploy_T.png" alt="Control System Micro Rotations Response Reaction Wheel Applied Torques">
+            <img src="images/deploy_T.png" alt="Control System Micro Rotations Response Reaction Wheel Applied Torques">
             <figcaption>Figure 10: Control System Micro Rotations Response Reaction Wheel Applied Torques</figcaption>
         </figure>
     
@@ -165,7 +168,7 @@
         </p>
         <h2>A.2</h2>
 
-<table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+<table border="1" style="width: 75%; border-collapse: collapse; text-align: left;">
     <thead>
         <tr>
             <th>Sensor Type</th>
@@ -204,7 +207,7 @@
     </tbody>
 </table>
 
-<table border="1" style="width: 100%; border-collapse: collapse; text-align: left; margin-top: 20px;">
+<table border="1" style="width: 75%; border-collapse: collapse; text-align: left; margin-top: 20px;">
     <thead>
         <tr>
             <th>STIM377H IMU Component</th>
@@ -231,7 +234,7 @@
     </tbody>
 </table>
 
-<table border="1" style="width: 100%; border-collapse: collapse; text-align: left; margin-top: 20px;">
+<table border="1" style="width: 75%; border-collapse: collapse; text-align: left; margin-top: 20px;">
     <thead>
         <tr>
             <th>Component</th>
