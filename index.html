@@ -99,6 +99,16 @@
             transform: scale(1.025);
         }
 
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .FPV {
             background-image: url('images/FPV_cover.png');
         }
@@ -136,6 +146,17 @@
 
             .button {
                 width: 75%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .button-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 10px;
+            }
+
+            .button {
+                width: 100%;
             }
         }
     </style>
