@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Long Range First Person View Eliptical Plank UAV</title>
+    <title>Medium Range FPV Head Tracking UAV</title>
     <style>
         body {
             background-color: rgb(0, 0, 0);
@@ -166,7 +166,12 @@
         testing and flights to land closer to the 50 mile and 1hr metrics. Initial 3D prints of the fuselage showed weak
         spots due to layering near hatches and attachment points where threaded inserts were added. these were
         reinforced in the final model.
-        <br>
+        <br><br>
+        This plane will feature a FPV camera mounted to a servo allowing for the camera to pan side to side. This
+        command will come from a head tracking unit built with an ESP32 and an IMU. A button will be added for
+        recentering and the signal will be output to the RC radio via the 3.5mm jack. This head tracker could be used to
+        control up to three servos (pan, tilt, and ywa) however for this plane, the mechanism was limited to pan only to
+        reduce size. A housing will be 3D printed to attach the head tracher to the right bay on the analog FPV goggles.
     <pre>
 
 <pre style="text-align: left;"><code>
