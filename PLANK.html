@@ -139,7 +139,7 @@
         <br>
         &nbsp;&nbsp;&nbsp;&nbsp;After all sections were allowed to fully cure they were removed and assembled where they
         would be sanded and prepped for paint.
-        <br>
+        <br><br>
         &nbsp;&nbsp;&nbsp;&nbsp;This projects initial goal was to create a medium range FPV plane and an oppertunity to
         explore new building techniques. After hotwire, glue, sand, and fiberglass, it was clear that the desired
         geometry was not achieved within a realistic margin. With the goal of consistant and reliable flight on a
@@ -147,7 +147,12 @@
         and modeled with the goal of minimizing the fuselage size and overall footprint for ease of transport and 3D
         printing. The spar system and main wing were designed to maximize stiffmess while minimizing weight.
         Disregarding the front spar used for torsional strength and the rear 2mm spars, With 2 4mm x 400mm carbon spars,
-        the aircraft can survive 3.7 G's with a 2.5 safety factor.
+        the aircraft can survive 3.7 G's with a 2.5 safety factor. The calculated horizontal and vertical tail volume
+        coefficients were calculated lower than desired> I wanted to aim for the low end of the reccomended values,
+        however the calculated coefficinets of VH = .3 and VV = .02 were lower than recommended. I decided they were
+        acceptable as I prefered a smaller tail volume for efficiency and the yaw damper will help with stability. This
+        will be a good test on what values to aim for and the beauty of a 3d printed airframe is these properties can
+        always be revised and reprinted after initial flight testing.
         <br>
         <img src="images/talon_2.png" alt="Prototype drawing showing talon 2">
         <br>
@@ -156,11 +161,14 @@
         watts at cruise. With a 21700 4S battery and assuming a 50% efficiency (low estimate accounting for more complex
         real world drag model and power train losses) this gives a flight time of 1.3 hours and a range of 73 miles.
         While this may be an overestimate, it exceeds my goal of a 1hr flight time and 50 mile range. I expect real
-        testing and flights to land closer to the 50 mile and 1hr metrics.
+        testing and flights to land closer to the 50 mile and 1hr metrics. Initial 3D prints of the fuselage showed weak
+        spots due to layering near hatches and attachment points where threaded inserts were added. these were
+        reinforced in the final model.
         <br>
     <pre>
-            <code>
-                clear; clc; close all;
+
+<pre style="text-align: left;"><code>
+clear; clc; close all;
 
 g   = 32.174; %gravity
 rho = 0.002377; %air density
@@ -258,9 +266,10 @@ xlabel('spanwise location (inches)')
 title('lift distribution')
 legend("show")
 hold off
-</code>
+</code></pre>
 
-    
+
     </p>
 </body>
+
 </html>
